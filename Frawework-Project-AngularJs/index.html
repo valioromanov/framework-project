@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Framework Project - AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="app.js"></script>
+</head>
+<body ng-app="HangmanApp" ng-controller="GameController">
+    <header>
+        <h1>HANGMAN</h1>
+        <h3 ng-click="restartGame()">RESTART</h3>
+    </header>
+    <hr/>
+    <div id="body" ng-if="endGame">
+        <div id="guessesLeft">
+            Guesses Left <br/> {{guesses}}
+        </div>
+        <div id="incorrectLetters">
+            <img src="img/down.png">
+            <br/>
+           <span ng-repeat="letter in incorrectLettersChosen">{{letter}} </span>
+        </div>
+        <div id="correctLetters">
+            <img src="img/up.png">
+            <br/>    
+            <span ng-repeat="letter in correctLettersChosen">{{letter}} </span>
+        </div>
+        <div id="guessWord">
+            You have to guess: <br/>{{displayWord}}
+        </div>
+        <div>
+            <div>
+                <input type="text" name="guess" ng-model="input.letter" maxlength="1">
+                <br/>
+                <span ng-if="wordInChosenList">You already use this letter!</span>
+                <br/>
+                <button ng-click="letterChosen()">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div id="endGame" ng-if="!endGame">
+        {{endGameText}}
+    </div>
+
+
+    
+</body>
+</html>
